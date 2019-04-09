@@ -1,0 +1,7 @@
+<p> Here is a list of exercises you've recorded so far, <%= @user.username %>
+<% @user.exercises.each do |exercise| %>
+  <div>
+    <%= exercise.date %> - <%= exercise.name %> - <%= exercise.minutes %>minutes.
+  
+  </div>
+<% end %>
