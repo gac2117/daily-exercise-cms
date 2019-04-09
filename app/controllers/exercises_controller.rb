@@ -25,10 +25,10 @@ class ExercisesController < ApplicationController
           redirect to '/exercises/new'
         else
           @exercise = Exercise.create(name: params[:name], minutes: params[:minutes], date: params[:date])
-          binding.pry
           @current_user = User.find_by_id(session[:user_id])
           @exercise.user_id = @current_user.id
           @exercise.save
+          redirect to "/users/#{@current_user.username}"
         end
       end
     end
