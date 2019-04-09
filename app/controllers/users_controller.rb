@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 # User signs up for a new account
   get '/signup' do
     if logged_in?
-      redirect to '/exercises'
+      redirect to '/users/:username'
     else
       erb :'/users/new'
     end
@@ -15,14 +15,14 @@ class UsersController < ApplicationController
    else
      @user = User.create(username: params[:username], email: params[:email], password: params[:password])
      session[:user_id] = @user.id
-     redirect to '/exercises'
+     redirect to '/exercises/new'
    end
  end
 
 # User logs into account
  get '/login' do
     if logged_in?
-      redirect to '/exercises'
+      redirect to '/users/:username'
     else
       erb :'/users/login'
     end
