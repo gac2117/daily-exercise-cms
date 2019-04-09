@@ -5,14 +5,13 @@ class ExercisesController < ApplicationController
     if logged_in?
       @exercises = Exercise.all
       @today = Date.today
-
       erb :'/exercises/index'
     else
       redirect to '/login'
     end
   end
 
-# User can create a new record of exercise
+# User can create a new exercise record
   get '/exercises/new' do
       if logged_in?
         erb :'/exercises/new'
@@ -54,6 +53,7 @@ class ExercisesController < ApplicationController
       redirect to '/login'
     end
   end
+
 # Edit one exercise record
   patch '/exercises/:id' do
     @exercise = Exercise.find_by_id(params[:id])
@@ -62,6 +62,7 @@ class ExercisesController < ApplicationController
     @exericse.minutes = params[:minutes]
     @exericse.save
   end
+  
 # Delete one exercise record
   delete '/exercises/:id' do
     if logged_in?
