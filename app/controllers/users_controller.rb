@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+
 # User signs up for a new account
   get '/signup' do
     if logged_in?
@@ -17,6 +18,7 @@ class UsersController < ApplicationController
      redirect to '/exercises'
    end
  end
+
 # User logs into account
  get '/login' do
     if logged_in?
@@ -35,6 +37,7 @@ class UsersController < ApplicationController
       redirect to '/login'
     end
   end
+
 # User logs out of session
   get '/logout' do
     if logged_in?
@@ -44,7 +47,8 @@ class UsersController < ApplicationController
       redirect to '/'
     end
   end
-# User can see all exercise records for self 
+
+# User can see all exercise records for self
   get '/users/:username' do
     @user = User.find_by(param[:username])
     erb :'/users/show'
