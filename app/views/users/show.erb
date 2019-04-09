@@ -1,7 +1,9 @@
 <p> Here is a list of exercises you've recorded so far, <%= @user.username %>
 <% @user.exercises.each do |exercise| %>
   <div>
-    <%= exercise.date %> - <%= exercise.name %> - <%= exercise.minutes %>minutes.
-  
+    <li><%= exercise.date %> - <a href="/exercises/<%= @exercise.id%>"<%= exercise.name %></a> - <%= exercise.minutes %>minutes.</li>
   </div>
+  To create a new exercise record, click here.
+  To view all of the exercises recorded today, click here.
+  To log out, click here.
 <% end %>
