@@ -32,12 +32,13 @@ class ExercisesController < ApplicationController
         end
       end
     end
-    
+
 # View one exercise record
   get '/exercises/:id' do
     if logged_in?
+      @user = User.find_by_id(session[:user_id])
       @exercise = Exercise.find_by_id(params[:id])
-      erb :'exercises/show'
+      erb :'/exercises/show'
     else
       redirect to '/login'
     end
