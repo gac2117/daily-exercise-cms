@@ -2,10 +2,12 @@
 Here are all of the exercise records for today:
 <% @exercises.each do |exercise| %>
   <% if exercise.date == @today %>
-    <ol>
-      <li>
-        Exercise: <%= exercise.name %>
+    <ul>
+      <li>Username: <% id=exercise.user_id %>
+        <% current = User.find_by_id(id)%>
+        <%= current.username %><br>
+        Exercise: <%= exercise.name %><br>
         Duration <%= exercise.minutes %> minutes</li>
-    </ol>
+    </ul>
     <% end %>
 <% end %>

@@ -5,8 +5,7 @@ class ExercisesController < ApplicationController
     if logged_in?
       @exercises = Exercise.all
       @today = Date.today
-#      @today = date.strftime(“%Y-%m-%d”)
-      binding.pry
+
       erb :'/exercises/index'
     else
       redirect to '/login'
