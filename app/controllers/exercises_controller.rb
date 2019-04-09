@@ -1,5 +1,6 @@
 class ExercisesController < ApplicationController
 
+# See all the exercises of all users for today
   get '/exercises' do
     @exercises = Exercise.all
     if logged_in?
@@ -8,7 +9,7 @@ class ExercisesController < ApplicationController
       redirect to '/login'
     end
   end
-
+# User can create a new record of exercise
   get '/exercises/new' do
       if logged_in?
         erb :'/exercises/new'
@@ -29,5 +30,30 @@ class ExercisesController < ApplicationController
         end
       end
     end
+# View one exercise record
+  get '/exercises/:id' do
+    if logged_in?
+      @exercise = Exercise.find_by_id(params[:id])
+      erb :'exercises/show'
+    else
+      redirect to '/login'
+    end
+  end
 
+  get '/exercises/:id/edit' do
+    if logged_in?
+      @exercise = Exercise.find_by_id(params[:id])
+      erb :'/exercises/edit'
+    else
+      redirect to '/login'
+    end
+  end
+
+  patch '/exercises/:id' do
+    @exercise = Exercise.find_by_id(params[:id])
+    @exericse.name = params[:name]
+    @exericse.date = params[:date]
+    @exericse.minutes = params[:minutes]
+    @exericse.save
+  end
 end
