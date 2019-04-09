@@ -22,6 +22,7 @@ class UsersController < ApplicationController
 # User logs into account
  get '/login' do
     if logged_in?
+      @user = User.find_by_id(session[:user_id])
       redirect to "/users/#{@user.username}"
     else
       erb :'/users/login'
@@ -50,7 +51,7 @@ class UsersController < ApplicationController
 
 # User can see all exercise records for self
   get '/users/:username' do
-    @user = User.find_by(param[:username])
+    @user = User.find_by(username: params[:username])
     erb :'/users/show'
   end
 
