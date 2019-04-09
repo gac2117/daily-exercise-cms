@@ -1,1 +1,11 @@
-Here are all of the exercise records for today
+<h1>Exercises recorded for today!</h1>
+Here are all of the exercise records for today:
+<% @exercises.each do |exercise| %>
+  <% if exercise.date == @today %>
+    <ol>
+      <li>
+        Exercise: <%= exercise.name %>
+        Duration <%= exercise.minutes %> minutes</li>
+    </ol>
+    <% end %>
+<% end %>

@@ -2,8 +2,11 @@ class ExercisesController < ApplicationController
 
 # See all the exercises of all users for today
   get '/exercises' do
-    @exercises = Exercise.all
     if logged_in?
+      @exercises = Exercise.all
+      @today = Date.today
+#      @today = date.strftime(“%Y-%m-%d”)
+      binding.pry
       erb :'/exercises/index'
     else
       redirect to '/login'
