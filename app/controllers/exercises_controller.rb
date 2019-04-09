@@ -48,7 +48,7 @@ class ExercisesController < ApplicationController
       redirect to '/login'
     end
   end
-
+# Edit one exercise record
   patch '/exercises/:id' do
     @exercise = Exercise.find_by_id(params[:id])
     @exericse.name = params[:name]
@@ -56,4 +56,17 @@ class ExercisesController < ApplicationController
     @exericse.minutes = params[:minutes]
     @exericse.save
   end
+# Delete one exercise record 
+  delete '/exercises/:id' do
+    if logged_in?
+      @exercise = Exercise.find_by_id(params[:id])
+      @current_user = User.find_by_id(session[:user_id])
+      if @exercise.user_id == @current_user.id
+        @exercise.delete
+      else
+        redirect to '/exercise'
+      end
+    end
+  end
+
 end
