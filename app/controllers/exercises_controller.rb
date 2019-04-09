@@ -9,6 +9,7 @@ class ExercisesController < ApplicationController
       redirect to '/login'
     end
   end
+  
 # User can create a new record of exercise
   get '/exercises/new' do
       if logged_in?
@@ -56,7 +57,7 @@ class ExercisesController < ApplicationController
     @exericse.minutes = params[:minutes]
     @exericse.save
   end
-# Delete one exercise record 
+# Delete one exercise record
   delete '/exercises/:id' do
     if logged_in?
       @exercise = Exercise.find_by_id(params[:id])
