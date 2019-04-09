@@ -9,7 +9,7 @@ class ExercisesController < ApplicationController
       redirect to '/login'
     end
   end
-  
+
 # User can create a new record of exercise
   get '/exercises/new' do
       if logged_in?
