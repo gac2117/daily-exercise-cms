@@ -32,6 +32,7 @@ class ExercisesController < ApplicationController
         end
       end
     end
+    
 # View one exercise record
   get '/exercises/:id' do
     if logged_in?
