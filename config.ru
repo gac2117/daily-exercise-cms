@@ -1,6 +1,6 @@
 require_relative './config/environment'
 
 use Rack::MethodOverride
-use UserController
-use ExerciseController
+use UsersController
+use ExercisesController
 run ApplicationController
