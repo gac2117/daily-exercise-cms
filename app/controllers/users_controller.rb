@@ -3,6 +3,7 @@ class UsersController < ApplicationController
 # User signs up for a new account
   get '/signup' do
     if logged_in?
+      @user = User.find_by_id(session[:user_id])
       redirect to "/users/#{@user.username}"
     else
       erb :'/users/new'

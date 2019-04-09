@@ -1,11 +1,12 @@
 <h1>Edit your exercise record</h1>
 
-<%= @exercise.date %><%= @exercise.name %><%= @exercise.minutes %> minutes
-
 <form action="/exercises/<%=@exercise.id%>" method="post">
   <input id="hidden" type="hidden" name="_method" value="patch">
-  <input type="date" name="date">
-  <input type="text" name="name">
-  <input type="integer" name="minutes">
-  <input type="submit" value="Edit">
+  Date: <%= @exercise.date %> <br>
+  Change to: <input type="date" name="date"><br><br>
+  Exercise Name: <%= @exercise.name %> <br>
+  Change to: <input type="text" name="name"><br><br>
+  Duration: <%= @exercise.minutes %> minutes<br>
+  Change to: <input type="integer" name="minutes"><br><br>
+  <input type="submit" value="Edit Record">
 </form>
