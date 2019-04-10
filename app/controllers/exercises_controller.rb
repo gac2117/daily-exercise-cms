@@ -22,14 +22,14 @@ class ExercisesController < ApplicationController
 
     post '/exercises/new' do
       if logged_in?
-        if params[:name] == "" || params[:minutes] == "" || params[:date] == ""
-          redirect to '/exercises/new'
-        else
-          @exercise = Exercise.create(name: params[:name], minutes: params[:minutes], date: params[:date])
+        @exercise = Exercise.create(name: params[:name], minutes: params[:minutes], date: params[:date])
+        if @exercise.valid?
           @current_user = User.find_by_id(session[:user_id])
           @exercise.user_id = @current_user.id
           @exercise.save
           redirect to "/users/#{@current_user.username}"
+        else
+          redirect to '/exercises/new'
         end
       end
     end
@@ -62,7 +62,7 @@ class ExercisesController < ApplicationController
     @exericse.minutes = params[:minutes]
     @exericse.save
   end
-  
+
 # Delete one exercise record
   delete '/exercises/:id' do
     if logged_in?
