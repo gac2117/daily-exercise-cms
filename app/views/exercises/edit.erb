@@ -3,10 +3,10 @@
 <form action="/exercises/<%=@exercise.id%>" method="post">
   <input id="hidden" type="hidden" name="_method" value="patch">
   Date: <%= @exercise.date %> <br>
-  Change to: <input type="date" name="date"><br><br>
+  Change to: <input type="date" name="exercise[date]" id="date"><br><br>
   Exercise Name: <%= @exercise.name %> <br>
-  Change to: <input type="text" name="name"><br><br>
+  Change to: <input type="text" name="exercise[name]" id="name"><br><br>
   Duration: <%= @exercise.minutes %> minutes<br>
-  Change to: <input type="integer" name="minutes"><br><br>
+  Change to: <input type="integer" name="exercise[minutes]" id="minutes"><br><br>
   <input type="submit" value="Edit Record">
 </form>
