@@ -5,7 +5,7 @@ Exercise Name: <%= @exercise.name %><br>
 Duration: <%= @exercise.minutes %> minutes<br><br>
 
 <a href="/exercises/<%=@exercise.id%>/edit">Click here</a> to edit this exercise record.<br><br>
-<a href="/users/<%=@user.username%>">Click here</a> to go back to your list of exercise records.<br><br>
+<a href="/users/<%=@current_user.username%>">Click here</a> to go back to your list of exercise records.<br><br>
 <form action="/exercises/<%=@exercise.id%>" method="post">
   <input id="hidden" type="hidden" name="_method" value="delete">
   <input type="submit" value="Delete Exercise Record">

@@ -66,10 +66,11 @@ class ExercisesController < ApplicationController
 # Edit one exercise record
   patch '/exercises/:id' do
     @exercise = Exercise.find_by_id(params[:id])
-    @exericse.name = params[:name]
-    @exericse.date = params[:date]
-    @exericse.minutes = params[:minutes]
-    @exericse.save
+    @exercise.date = params[:date]
+    @exercise.name = params[:name]
+    @exercise.minutes = params[:minutes]
+    @exercise.save
+    redirect to "/exercises/#{@exercise.id}"
   end
 
 # Delete one exercise record
