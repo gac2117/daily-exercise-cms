@@ -1,4 +1,5 @@
-<h1>Exercises recorded for today!</h1>
+<h1 style="font-family:impact;">Exercises recorded for today!</h1>
+<div style="font-family:helvetica;">
 Here are all of the exercise records for today:
 <% @exercises.each do |exercise| %>
   <% if exercise.date == @today %>
@@ -11,3 +12,4 @@ Here are all of the exercise records for today:
     </ul>
     <% end %>
 <% end %>
+</div>

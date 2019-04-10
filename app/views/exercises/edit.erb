@@ -1,6 +1,6 @@
-<h1>Edit your exercise record</h1>
+<h1 style="font-family:impact;">Edit your exercise record</h1>
 
-<form action="/exercises/<%= @exercise.id %>" method="post">
+<form style="font-family:helvetica;" action="/exercises/<%= @exercise.id %>" method="post">
   <input id="hidden" type="hidden" name="_method" value="patch">
   Date: <%= @exercise.date %> <br>
   Change to: <input type="date" name="exercise[date]" id="date"><br><br>
