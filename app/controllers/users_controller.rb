@@ -53,7 +53,12 @@ class UsersController < ApplicationController
 # User can see all exercise records for self
   get '/users/:username' do
     @user = User.find_by(username: params[:username])
-    erb :'/users/show'
+    @current_user = User.find_by_id(session[:user_id])
+    if @user.username == @current_user.username
+      erb :'/users/show'
+    else
+      redirect to "/users/#{@current_user.username}"
+    end
   end
 
 end
