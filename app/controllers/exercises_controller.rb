@@ -25,7 +25,6 @@ class ExercisesController < ApplicationController
       if logged_in?
         @today = Date.today
         @exercise = Exercise.create(name: params[:name], minutes: params[:minutes], date: params[:date])
-        binding.pry
         if @exercise.valid? && @exercise.date <= @today
           @current_user = User.find_by_id(session[:user_id])
           @exercise.user_id = @current_user.id
@@ -96,9 +95,11 @@ class ExercisesController < ApplicationController
         @exercise.delete
         redirect to "/users/#{@current_user.username}"
       else
-        redirect to '/exercise'
+        flash[:error] = "You cannot delete other people's records."
+        redirect to "/users/#{@current_user.username}"
       end
     else
+      flash[:error] = "You must be logged in."
       redirect to '/login'
     end
   end
