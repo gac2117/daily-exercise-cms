@@ -23,14 +23,16 @@ class ExercisesController < ApplicationController
 
     post '/exercises/new' do
       if logged_in?
+        @today = Date.today
         @exercise = Exercise.create(name: params[:name], minutes: params[:minutes], date: params[:date])
-        if @exercise.valid?
+        binding.pry
+        if @exercise.valid? && @exercise.date <= @today
           @current_user = User.find_by_id(session[:user_id])
           @exercise.user_id = @current_user.id
           @exercise.save
-          redirect to "/users/#{@current_user.username}"
+          redirect to "/exercises/#{@exercise.id}"
         else
-          flash[:error] = "Please enter all the fields."
+          flash[:error] = "Please try again."
           redirect to '/exercises/new'
         end
       end
