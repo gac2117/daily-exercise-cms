@@ -1,5 +1,7 @@
-class ExercisesController < ApplicationController
+require 'rack-flash'
 
+class ExercisesController < ApplicationController
+  use Rack::Flash
 # See all the exercises of all users for today
   get '/exercises' do
     if logged_in?
@@ -66,7 +68,16 @@ class ExercisesController < ApplicationController
 # Edit one exercise record
   patch '/exercises/:id' do
     @exercise = Exercise.find_by_id(params[:id])
-    @exercise.update(params[:exercise])
+    if params[:exercise][:name] != ""
+      @exercise.name = params[:exercise][:name]
+    end
+    if params[:exercise][:date] != ""
+      @exercise.date = params[:exercise][:date]
+    end
+    if params[:exercise][:minutes] != ""
+      @exercise.minutes = params[:exercise][:minutes]
+    end
+    @exercise.save
     redirect to "/exercises/#{@exercise.id}"
   end
 
