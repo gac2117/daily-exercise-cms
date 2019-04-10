@@ -1,4 +1,7 @@
 <h1><%=@user.username%>'s List of Exercise Records</h1>
+<div id='flash' class='error'>
+  <%= flash[:error] %>
+</div>
 <p> Here are the days you exercised. <br>
 To view a day's exercise record, click on the date.</p>
 <% @user.exercises.each do |exercise| %>

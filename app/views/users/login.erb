@@ -1,4 +1,7 @@
 <h1>Log In here!</h1>
+<div id='flash' class='error'>
+  <%= flash[:error] %>
+</div>
 <br>
 <form action="/login" method="post">
   <label>Username: </label><input type="text" name="username"><br><br>

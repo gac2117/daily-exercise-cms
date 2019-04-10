@@ -1,7 +1,5 @@
-require 'rack-flash'
-
 class ExercisesController < ApplicationController
-  use Rack::Flash
+
 # See all the exercises of all users for today
   get '/exercises' do
     if logged_in?
@@ -18,6 +16,7 @@ class ExercisesController < ApplicationController
       if logged_in?
         erb :'/exercises/new'
       else
+        flash[:error] = "You must be logged in to view."
         redirect to '/login'
       end
     end
@@ -31,6 +30,7 @@ class ExercisesController < ApplicationController
           @exercise.save
           redirect to "/users/#{@current_user.username}"
         else
+          flash[:error] = "Please enter all the fields."
           redirect to '/exercises/new'
         end
       end
@@ -44,9 +44,11 @@ class ExercisesController < ApplicationController
       if @exercise.user_id == @current_user.id
         erb :'/exercises/show'
       else
+        flash[:error] = "You can only view your exercise records."
         redirect to "/users/#{@current_user.username}"
       end
     else
+      flash[:error] = "You must be logged in to view."
       redirect to '/login'
     end
   end
@@ -58,9 +60,11 @@ class ExercisesController < ApplicationController
       if @exercise.user_id == @current_user.id
         erb :'/exercises/edit'
       else
+        flash[:error] = "You cannot edit other people's records."
         redirect to "/users/#{@current_user.username}"
       end
     else
+      flash[:error] = "You must be logged in to view."
       redirect to '/login'
     end
   end

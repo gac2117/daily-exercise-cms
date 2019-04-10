@@ -1,4 +1,7 @@
 <h1>Create your account here!</h1>
+<div id='flash' class='error'>
+  <%= flash[:error] %>
+</div>
 <br>
 <form action="/signup" method="post">
   <label>Username: </label><input type="text" name="username"><br><br>
