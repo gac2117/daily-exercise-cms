@@ -1,8 +1,18 @@
 <h1 style="font-family:impact;">Exercise Record</h1>
 <div style="font-family:helvetica;">
-Date: <%= @exercise.date %><br>
-Exercise Name: <%= @exercise.name %><br>
-Duration: <%= @exercise.minutes %> minutes<br><br>
+  <table>
+    <tr>
+      <th>Date</th>
+      <th>Exercise Name</th>
+      <th>Duration</th>
+    </tr>
+    <tr>
+      <td align="center"><%= @exercise.date %></td>
+      <td align="center"><%= @exercise.name %></td>
+      <td align="center"><%= @exercise.minutes %> minutes</td>
+    </tr>
+  </table>
+  <br><br>
 
 <a href="/exercises/<%=@exercise.id%>/edit">Click here</a> to edit this exercise record.<br><br>
 <a href="/users/<%=@current_user.username%>">Click here</a> to go back to your list of exercise records.<br><br>

@@ -12,8 +12,8 @@ To view an exercise record, click on the name.</p>
   </tr>
     <% @user.exercises.each do |exercise| %>
     <tr>
-      <th><%= exercise.date %></th>
-      <th><a href="/exercises/<%=exercise.id%>"><%= exercise.name %></a></th>
+      <td align="center"><%= exercise.date %></td>
+      <td align="center"><a href="/exercises/<%=exercise.id%>"><%= exercise.name %></a></td>
     </tr>
     <%end%>
   </table>
