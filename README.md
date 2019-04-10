@@ -5,12 +5,12 @@ This is a CRUD, MVC app using Sinatra. This app will keep track of daily exercis
 ## Installation
 1. Fork the repository.
 2. Clone your fork locally.
-3. 'cd' into the local repo you just cloned.
-4. Run "bundle install" while in the root directory
+3. `cd` into the local repo you just cloned.
+4. Run `bundle install` while in the root directory
 
 ## Usage
-1. Run "rake db:migrate" to set up the tables
-2. Run "shotgun"
+1. Run `rake db:migrate` to set up the tables
+2. Run `shotgun`
 3. Navigate to the address and port given on the command line in a browser
 4. Follow the on-screen instructions
 
