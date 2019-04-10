@@ -45,7 +45,7 @@ class ExercisesController < ApplicationController
       if @exercise.user_id == @current_user.id
         erb :'/exercises/show'
       else
-        flash[:error] = "You can only view your exercise records."
+        flash[:error] = "You cannot view other people's records."
         redirect to "/users/#{@current_user.username}"
       end
     else

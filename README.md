@@ -1,6 +1,6 @@
 # DailyExerciseCMS
 
-This is a CRUD, MVC app using Sinatra. This app will keep track of daily exercise for its users. The user will be able to sign up, sign in, and sign out securely. The user can enter the date, the name of the exercise, and the duration of the exercise.
+This is a CRUD, MVC app using Sinatra. This app will keep track of daily exercise records for its users. The user will be able to sign up, log in, and log out securely. The user can enter the date, the name, and the duration of the exercise. The user can view, edit, and delete only his/her exercise records.
 
 ## Installation
 1. Fork the repository.
