@@ -15,6 +15,7 @@ class ExercisesController < ApplicationController
 # User can create a new exercise record
   get '/exercises/new' do
       if logged_in?
+        @current_user = User.find_by_id(session[:user_id])
         erb :'/exercises/new'
       else
         flash[:error] = "You must be logged in to view."
