@@ -37,9 +37,13 @@ class ExercisesController < ApplicationController
 # View one exercise record
   get '/exercises/:id' do
     if logged_in?
-      @user = User.find_by_id(session[:user_id])
+      @current_user = User.find_by_id(session[:user_id])
       @exercise = Exercise.find_by_id(params[:id])
-      erb :'/exercises/show'
+      if @exercise.user_id == @current_user.id
+        erb :'/exercises/show'
+      else
+        redirect to "/users/#{@current_user.username}"
+      end
     else
       redirect to '/login'
     end
@@ -48,7 +52,12 @@ class ExercisesController < ApplicationController
   get '/exercises/:id/edit' do
     if logged_in?
       @exercise = Exercise.find_by_id(params[:id])
-      erb :'/exercises/edit'
+      @current_user = User.find_by_id(session[:user_id])
+      if @exercise.user_id == @current_user.id
+        erb :'/exercises/edit'
+      else
+        redirect to "/users/#{@current_user.username}"
+      end
     else
       redirect to '/login'
     end
