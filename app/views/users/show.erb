@@ -2,9 +2,10 @@
 <div id='flash' class='error'>
   <%= flash[:error] %>
 </div>
+
 <div style="font-family:helvetica;">
-<p> Here are the days you exercised. <br>
-To view an exercise record, click on the name.</p>
+<p>To view an exercise record, click on the name.</p>
+
 <table>
   <tr>
     <th>Date</th>
@@ -17,7 +18,8 @@ To view an exercise record, click on the name.</p>
     </tr>
     <%end%>
   </table>
-  <p>To create a new exercise record, <a href="/exercises/new">click here.</a><br>
-  To view all of the exercises recorded today, <a href="/exercises">click here.</a><br>
-  To log out, <a href="/logout">click here.</a></p>
+
+<p>To create a new exercise record, <a href="/exercises/new">click here.</a><br><br>
+To view all of the exercises recorded today, <a href="/exercises">click here.</a><br><br>
+To log out, <a href="/logout">click here.</a></p>
 </div>

@@ -3,6 +3,7 @@ class ExercisesController < ApplicationController
 # See all the exercises of all users for today
   get '/exercises' do
     if logged_in?
+      @current_user = User.find_by_id(session[:user_id])
       @exercises = Exercise.all
       @today = Date.today
       erb :'/exercises/index'

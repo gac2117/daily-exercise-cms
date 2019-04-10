@@ -1,15 +1,26 @@
 <h1 style="font-family:impact;">Exercises recorded for today!</h1>
+
 <div style="font-family:helvetica;">
-Here are all of the exercise records for today:
-<% @exercises.each do |exercise| %>
-  <% if exercise.date == @today %>
-    <ul>
-      <li>Username: <% id=exercise.user_id %>
-        <% current = User.find_by_id(id)%>
-        <%= current.username %><br>
-        Exercise: <%= exercise.name %><br>
-        Duration <%= exercise.minutes %> minutes</li>
-    </ul>
+Here are all of the exercise records for today:<br><br>
+
+  <table>
+    <tr>
+      <th>Username</th>
+      <th>Exercise Name</th>
+      <th>Duration</th>
+    </tr>
+    <% @exercises.each do |exercise| %>
+      <% if exercise.date == @today %>
+        <tr>
+          <td align="center"><% id=exercise.user_id %>
+            <% current = User.find_by_id(id)%>
+            <%= current.username %></td>
+          <td align="center"><%= exercise.name %></td>
+          <td align="center"><%= exercise.minutes %> minutes</td>
+        </tr>
+      <% end %>
     <% end %>
-<% end %>
+  </table>
+  <br><br>
+  To go back to your list of exercise records, <a href="/users/<%=@current_user.username%>">click here</a>
 </div>
