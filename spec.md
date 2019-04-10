@@ -11,7 +11,7 @@ Specs:
 - [x] Ensured that users can't modify content created by other users by checking the user id of the currently logged in user with the user id of the record they are trying to modify
 - [x] Included user input validations for creating a new user and exercise record to make sure no fields are left blank
 - [x] BONUS - not required - Displayed validation failures to user with error message using Rack Flash
-- [x] Your README.md includes a short description, install instructions, a contributors guide and a link to the license for your code
+- [x] My README.md includes a short description, install instructions, a contributors guide and a link to the license for your code
 
 Confirm
 - [x] I have a large number of small Git commits
