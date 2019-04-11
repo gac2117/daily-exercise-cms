@@ -25,6 +25,7 @@ class UsersController < ApplicationController
  get '/login' do
     if logged_in?
       @current_user = User.find_by_id(session[:user_id])
+      binding.pry
       redirect to "/users/#{@current_user.username}"
     else
       erb :'/users/login'
