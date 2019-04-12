@@ -11,67 +11,47 @@ class ExercisesController < ApplicationController
 
 # User can create a new exercise record
   get '/exercises/new' do
-      if logged_in?
-        @current_user = current_user
-        erb :'/exercises/new'
-      else
-        flash[:error] = "You must be logged in to view."
-        redirect to '/login'
-      end
-    end
+    redirect_unless_logged_in
+    @current_user = current_user
+    erb :'/exercises/new'
+  end
 
-    post '/exercises' do
-      if logged_in?
-        @today = Date.today
-        @exercise = Exercise.create(name: params[:name], minutes: params[:minutes], date: params[:date])
-        if @exercise.valid? && @exercise.date <= @today
-          @current_user = current_user
-          @exercise.user_id = @current_user.id
-          @exercise.save
-          redirect to "/exercises/#{@exercise.id}"
-        else
-          flash[:error] = "Please try again."
-          redirect to '/exercises/new'
-        end
-      end
+  post '/exercises' do
+    redirect_unless_logged_in
+    @today = Date.today
+    @exercise = Exercise.create(name: params[:name], minutes: params[:minutes], date: params[:date])
+    if @exercise.valid? && @exercise.date <= @today
+      @exercise.user_id = current_user.id
+      @exercise.save
+      redirect to "/exercises/#{@exercise.id}"
     end
+  end
 
 # View one exercise record
   get '/exercises/:id' do
-    if logged_in?
-      @current_user = current_user
-      @exercise = Exercise.find_by_id(params[:id])
-      if @exercise.user_id == @current_user.id
-        erb :'/exercises/show'
-      else
-        flash[:error] = "You cannot view other people's records."
-        redirect to "/users/#{@current_user.username}"
-      end
+    redirect_unless_logged_in
+    @exercise = Exercise.find_by_id(params[:id])
+    if @exercise.user_id == current_user.id
+      erb :'/exercises/show'
     else
-      flash[:error] = "You must be logged in to view."
-      redirect to '/login'
+      flash[:error] = "You cannot view other people's records."
+      redirect to "/users/#{current_user.username}"
     end
   end
 
   get '/exercises/:id/edit' do
-    if logged_in?
-      @exercise = Exercise.find_by_id(params[:id])
-      @current_user = current_user
-      if @exercise.user_id == @current_user.id
-        erb :'/exercises/edit'
-      else
-        flash[:error] = "You cannot edit other people's records."
-        redirect to "/users/#{@current_user.username}"
-      end
+    redirect_unless_logged_in
+    @exercise = Exercise.find_by_id(params[:id])
+    if @exercise.user_id == current_user.id
+      erb :'/exercises/edit'
     else
-      flash[:error] = "You must be logged in to view."
-      redirect to '/login'
+      flash[:error] = "You cannot edit other people's records."
+      redirect to "/users/#{current_user.username}"
     end
   end
 
 # Edit one exercise record
   patch '/exercises/:id' do
-    raise params.inspect
     @exercise = Exercise.find_by_id(params[:id])
     if params[:exercise][:name] != ""
       @exercise.name = params[:exercise][:name]
@@ -88,19 +68,14 @@ class ExercisesController < ApplicationController
 
 # Delete one exercise record
   delete '/exercises/:id' do
-    if logged_in?
-      @exercise = Exercise.find_by_id(params[:id])
-      @current_user = current_user
-      if @exercise.user_id == @current_user.id
-        @exercise.delete
-        redirect to "/users/#{@current_user.username}"
-      else
-        flash[:error] = "You cannot delete other people's records."
-        redirect to "/users/#{@current_user.username}"
-      end
+    redirect_unless_logged_in
+    @exercise = Exercise.find_by_id(params[:id])
+    if @exercise.user_id == current_user.id
+      @exercise.delete
+      redirect to "/users/#{current_user.username}"
     else
-      flash[:error] = "You must be logged in."
-      redirect to '/login'
+      flash[:error] = "You cannot delete other people's records."
+      redirect to "/users/#{current_user.username}"
     end
   end
 
