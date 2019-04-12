@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 # User signs up for a new account
   get '/signup' do
     if logged_in?
-      @current_user = User.find_by_id(session[:user_id])
+      @current_user = current_user
       redirect to "/users/#{@current_user.username}"
     else
       erb :'/users/new'
@@ -24,8 +24,7 @@ class UsersController < ApplicationController
 # User logs into account
  get '/login' do
     if logged_in?
-      @current_user = User.find_by_id(session[:user_id])
-      binding.pry
+      @current_user = current_user
       redirect to "/users/#{@current_user.username}"
     else
       erb :'/users/login'
@@ -56,7 +55,7 @@ class UsersController < ApplicationController
 # User can see all exercise records for self
   get '/users/:username' do
     @user = User.find_by(username: params[:username])
-    @current_user = User.find_by_id(session[:user_id])
+    @current_user = current_user
     if @user.username == @current_user.username
       erb :'/users/show'
     else

@@ -3,7 +3,7 @@ class ExercisesController < ApplicationController
 # See all the exercises of all users for today
   get '/exercises' do
     if logged_in?
-      @current_user = User.find_by_id(session[:user_id])
+      @current_user = current_user
       @exercises = Exercise.all
       @today = Date.today
       erb :'/exercises/index'
@@ -15,7 +15,7 @@ class ExercisesController < ApplicationController
 # User can create a new exercise record
   get '/exercises/new' do
       if logged_in?
-        @current_user = User.find_by_id(session[:user_id])
+        @current_user = current_user
         erb :'/exercises/new'
       else
         flash[:error] = "You must be logged in to view."
@@ -28,7 +28,7 @@ class ExercisesController < ApplicationController
         @today = Date.today
         @exercise = Exercise.create(name: params[:name], minutes: params[:minutes], date: params[:date])
         if @exercise.valid? && @exercise.date <= @today
-          @current_user = User.find_by_id(session[:user_id])
+          @current_user = current_user
           @exercise.user_id = @current_user.id
           @exercise.save
           redirect to "/exercises/#{@exercise.id}"
@@ -42,7 +42,7 @@ class ExercisesController < ApplicationController
 # View one exercise record
   get '/exercises/:id' do
     if logged_in?
-      @current_user = User.find_by_id(session[:user_id])
+      @current_user = current_user
       @exercise = Exercise.find_by_id(params[:id])
       if @exercise.user_id == @current_user.id
         erb :'/exercises/show'
@@ -59,7 +59,7 @@ class ExercisesController < ApplicationController
   get '/exercises/:id/edit' do
     if logged_in?
       @exercise = Exercise.find_by_id(params[:id])
-      @current_user = User.find_by_id(session[:user_id])
+      @current_user = current_user
       if @exercise.user_id == @current_user.id
         erb :'/exercises/edit'
       else
@@ -92,7 +92,7 @@ class ExercisesController < ApplicationController
   delete '/exercises/:id' do
     if logged_in?
       @exercise = Exercise.find_by_id(params[:id])
-      @current_user = User.find_by_id(session[:user_id])
+      @current_user = current_user
       if @exercise.user_id == @current_user.id
         @exercise.delete
         redirect to "/users/#{@current_user.username}"
