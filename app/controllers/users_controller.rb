@@ -22,8 +22,11 @@ class UsersController < ApplicationController
 
 # User logs into account
   get '/login' do
-    redirect_unless_logged_in
-    redirect to "/users/#{current_user.username}"
+    if logged_in?
+      redirect to "/users/#{current_user.username}"
+    else
+      erb :'/users/login'
+    end
   end
 
   post '/login' do

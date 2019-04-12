@@ -9,4 +9,6 @@
   Duration: <input type="integer" name="exercise[minutes]" id="minutes" value="<%= @exercise.minutes %>"> minutes<br><br>
 
   <input type="submit" value="Edit Record">
+  <br><br>
+  <a href="/users/<%=current_user.username%>">Click here</a> to go back to your list of exercise records.<br><br>
 </form>
