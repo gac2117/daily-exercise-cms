@@ -12,9 +12,7 @@ Here are all of the exercise records for today:<br><br>
     <% @exercises.each do |exercise| %>
       <% if exercise.date == @today %>
         <tr>
-          <td align="center"><% id=exercise.user_id %>
-            <% current = User.find_by_id(id)%>
-            <%= current.username %></td>
+          <td align="center"><%= exercise.user.username %>
           <td align="center"><%= exercise.name %></td>
           <td align="center"><%= exercise.minutes %> minutes</td>
         </tr>

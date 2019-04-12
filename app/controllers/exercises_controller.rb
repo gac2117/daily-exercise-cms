@@ -51,16 +51,12 @@ class ExercisesController < ApplicationController
 # Edit one exercise record
   patch '/exercises/:id' do
     @exercise = Exercise.find_by_id(params[:id])
-    if params[:exercise][:name] != ""
+    if params[:exercise] != ""
       @exercise.name = params[:exercise][:name]
-    end
-    if params[:exercise][:date] != ""
       @exercise.date = params[:exercise][:date]
-    end
-    if params[:exercise][:minutes] != ""
       @exercise.minutes = params[:exercise][:minutes]
+      @exercise.save
     end
-    @exercise.save
     redirect to "/exercises/#{@exercise.id}"
   end
 
