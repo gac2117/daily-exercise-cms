@@ -3,8 +3,7 @@ class UsersController < ApplicationController
 # User signs up for a new account
   get '/signup' do
     if logged_in?
-      @current_user = current_user
-      redirect to "/users/#{@current_user.username}"
+      redirect to "/users/#{current_user.username}"
     else
       erb :'/users/new'
     end
@@ -22,13 +21,9 @@ class UsersController < ApplicationController
  end
 
 # User logs into account
- get '/login' do
-    if logged_in?
-      @current_user = current_user
-      redirect to "/users/#{@current_user.username}"
-    else
-      erb :'/users/login'
-    end
+  get '/login' do
+    redirect_unless_logged_in
+    redirect to "/users/#{current_user.username}"
   end
 
   post '/login' do
@@ -54,13 +49,13 @@ class UsersController < ApplicationController
 
 # User can see all exercise records for self
   get '/users/:username' do
+    redirect_unless_logged_in
     @user = User.find_by(username: params[:username])
-    @current_user = current_user
-    if @user.username == @current_user.username
+    if @user && @user.username == current_user.username
       erb :'/users/show'
     else
       flash[:error] = "You cannot view other people's records."
-      redirect to "/users/#{@current_user.username}"
+      redirect to "/users/#{current_user.username}"
     end
   end
 
