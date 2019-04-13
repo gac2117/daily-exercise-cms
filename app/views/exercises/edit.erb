@@ -2,6 +2,7 @@
 
 <form style="font-family:helvetica;" action="/exercises/<%= @exercise.id %>" method="post">
   <input id="hidden" type="hidden" name="_method" value="patch">
+
   Date: <input type="date" name="exercise[date]" id="date" value="<%= @exercise.date %>"><br><br>
 
   Exercise Name: <input type="text" name="exercise[name]" id="name" value="<%= @exercise.name %>"><br><br>
@@ -10,5 +11,6 @@
 
   <input type="submit" value="Edit Record">
   <br><br>
+  
   <a href="/users/<%=current_user.username%>">Click here</a> to go back to your list of exercise records.<br><br>
 </form>

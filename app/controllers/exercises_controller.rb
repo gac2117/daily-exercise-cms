@@ -60,11 +60,10 @@ class ExercisesController < ApplicationController
     @exercise = Exercise.find_by_id(params[:id])
     if @exercise.user_id == current_user.id
       @exercise.delete
-      redirect to "/users/#{current_user.username}"
     else
       flash[:error] = "You cannot delete other people's records."
-      redirect to "/users/#{current_user.username}"
     end
+    redirect to "/users/#{current_user.username}"
   end
 
 end
