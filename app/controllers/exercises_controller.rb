@@ -48,9 +48,7 @@ class ExercisesController < ApplicationController
 # Edit one exercise record
   patch '/exercises/:id' do
     @exercise = Exercise.find_by_id(params[:id])
-    if params[:exercise] != ""
-      @exercise.update(params[:exercise])
-    end
+    @exercise.update(params[:exercise])
     redirect to "/exercises/#{@exercise.id}"
   end
 
