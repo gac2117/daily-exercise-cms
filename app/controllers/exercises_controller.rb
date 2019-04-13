@@ -3,8 +3,7 @@ class ExercisesController < ApplicationController
 # See all the exercises of all users for today
   get '/exercises' do
     redirect_unless_logged_in
-    @today = Date.today
-    erb '/exercises/index'
+    erb :'/exercises/index'
   end
 
 # User can create a new exercise record

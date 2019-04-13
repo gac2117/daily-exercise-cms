@@ -10,7 +10,7 @@ Here are all of the exercise records for today:<br><br>
       <th>Duration</th>
     </tr>
     <% Exercise.all.each do |exercise| %>
-      <% if exercise.date == @today %>
+      <% if exercise.date == Date.today %>
         <tr>
           <td align="center"><%= exercise.user.username %>
           <td align="center"><%= exercise.name %></td>
