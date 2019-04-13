@@ -10,15 +10,15 @@ class UsersController < ApplicationController
   end
 
   post '/signup' do
-    @user = User.create(username: params[:username], name: params[:name], password: params[:password])
-   if @user.valid?
-     session[:user_id] = @user.id
-     redirect to '/exercises/new'
-   else
-     flash[:error] = "Please try again."
-     redirect to '/signup'
-   end
- end
+    if User.new(params).valid?
+      @user = User.create(username: params[:username], name: params[:name], password: params[:password])
+      session[:user_id] = @user.id
+      redirect to '/exercises/new'
+    else
+      flash[:error] = "Please try again."
+      redirect to '/signup'
+    end
+  end
 
 # User logs into account
   get '/login' do
