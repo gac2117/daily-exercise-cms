@@ -17,8 +17,8 @@ class ExercisesController < ApplicationController
   post '/exercises' do
     redirect_unless_logged_in
     @today = Date.today
-    @exercise = Exercise.create(name: params[:name], minutes: params[:minutes], date: params[:date])
-    if @exercise.valid? && @exercise.date <= @today
+    if params[:exercise] != "" && @exercise.date <= @today
+      @exercise = Exercise.create(name: params[:name], minutes: params[:minutes], date: params[:date])
       @exercise.user_id = current_user.id
       @exercise.save
       redirect to "/exercises/#{@exercise.id}"
