@@ -3,6 +3,7 @@ class ExercisesController < ApplicationController
 # See all the exercises of all users for today
   get '/exercises' do
     redirect_unless_logged_in
+    @todays_exercises = Exercise.today
     erb :'/exercises/index'
   end
 
@@ -14,11 +15,13 @@ class ExercisesController < ApplicationController
 
   post '/exercises' do
     redirect_unless_logged_in
-    if params[:date].to_date <= Date.today && Exercise.new(params).valid?
-      @exercise = Exercise.create(name: params[:name], minutes: params[:minutes], date: params[:date])
-      @exercise.user_id = current_user.id
+    @exercise = current_user.exercises.build(params)
+    if @exercise.valid? && params[:date].to_date <= Date.today
       @exercise.save
       redirect to "/exercises/#{@exercise.id}"
+    else
+      flash[:error] = "Please try again: Date cannot be in the future. #{@exercise.errors.full_messages.to_sentence}"
+      redirect to "/exercises/new"
     end
   end
 

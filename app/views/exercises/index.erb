@@ -9,15 +9,13 @@ Here are all of the exercise records for today:<br><br>
       <th>Exercise Name</th>
       <th>Duration</th>
     </tr>
-    <% Exercise.all.each do |exercise| %>
-      <% if exercise.date == Date.today %>
-        <tr>
-          <td align="center"><%= exercise.user.username %>
-          <td align="center"><%= exercise.name %></td>
-          <td align="center"><%= exercise.minutes %> minutes</td>
-        </tr>
-      <% end %>
-    <% end %> 
+    <% @todays_exercises.each do |exercise| %>
+      <tr>
+        <td align="center"><%= exercise.user.username %>
+        <td align="center"><%= exercise.name %></td>
+        <td align="center"><%= exercise.minutes %> minutes</td>
+      </tr>
+    <% end %>
   </table>
   <br><br>
 
