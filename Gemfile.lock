@@ -13,7 +13,7 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
     arel (9.0.0)
-    bcrypt (3.1.12)
+    bcrypt (3.1.13)
     bond (0.5.1)
     coderay (1.1.2)
     concurrent-ruby (1.1.5)
@@ -34,7 +34,7 @@ GEM
       rack
     rack-test (0.6.3)
       rack (>= 1.0)
-    rake (12.3.2)
+    rake (12.3.3)
     require_all (2.0.0)
     ripl (0.7.1)
       bond (~> 0.5.1)
